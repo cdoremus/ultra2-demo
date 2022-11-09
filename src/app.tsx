@@ -1,7 +1,21 @@
+import { Suspense, lazy } from "react";
 import useAsset from "ultra/hooks/use-asset.js";
+import useServerContext from "ultra/hooks/use-server-context.js";
+import { Route, Routes } from "react-router-dom";
 // Twind
 import { TwindProvider } from "./twind/TwindProvider.tsx";
-import { tw } from "twind";
+
+import { DefaultLayout } from "./layouts/DefaultLayout.tsx";
+
+const HomePage = lazy(() => import("./pages/Home.tsx"));
+const AboutPage = lazy(() => import("./pages/About.tsx"));
+
+function RouteNotFound() {
+  useServerContext((context) => {
+    context.status(404);
+  });
+  return <div>Not found</div>;
+}
 
 export default function App() {
   console.log("Hello world!");
@@ -16,27 +30,16 @@ export default function App() {
           <link rel="stylesheet" href={useAsset("/style.css")} />
         </head>
         <body>
-          <main>
-            <h1 className={tw(`text-5xl font-extrabold`)}>
-              <span></span>__<span></span>
-            </h1>
-            <p>
-              Welcome to{" "}
-              <strong>Ultra</strong>. This is a barebones starter for your web
-              app.
-            </p>
-            <p>
-              Take{" "}
-              <a
-                href="https://ultrajs.dev/docs"
-                target="_blank"
-              >
-                this
-              </a>, you may need it where you are going. It will show you how to
-              customise your routing, data fetching, and styling with popular
-              libraries.
-            </p>
-          </main>
+          <Suspense fallback={<div>Page is Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<DefaultLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="about" element={<AboutPage />} />
+                <Route path="*" element={<RouteNotFound />} />
+              </Route>
+            </Routes>
+          </Suspense>
+
         </body>
       </html>
     </TwindProvider>
