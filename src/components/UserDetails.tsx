@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAsync from "ultra/hooks/use-async.js";
 import { useParams } from "react-router-dom";
@@ -19,8 +19,9 @@ export default function UserDetails({userId}: UserDetailsProps) {
   console.log("userId: ", userId)
   const {data, isLoading, isError, error} = useQuery(
     ["user", { id: userId }],
+    useAsync(() => fetchUser(userId), {returnCallback: true}),
+    // same result as useAsync line:
     // () => fetchUser(userId)
-    useAsync(() => fetchUser(userId)),
   );
   const user = data as UserType;
   // console.log("User Details ", user);
