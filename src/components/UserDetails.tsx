@@ -34,11 +34,19 @@ export default function UserDetails({userId}: UserDetailsProps) {
     return <div>Error for user {userId}: {error as string}</div>
   }
 
+  const address = `${user.address.street} ${user.address.suite}, ${user.address.city} ${user.address.zipcode}`;
   return (
 
     <div>
-      <h2>User Details for {user.name}</h2>
-      {<User user={user} />}
+      <h2 className={tw(`text-xl font-bold pb-4`)}>User Details for {user.name}</h2>
+      <div className={tw(`grid grid-cols-2 gap-2`)}>
+          <div className={tw(`text-right`)}>User Id: </div><div className={tw(`text-left`)}>{user.id}</div>
+          <div className={tw(`text-right`)}>User name: </div><div className={tw(`text-left`)}>{user.name}</div>
+          <div className={tw(`text-right`)}>Email address: </div><div className={tw(`text-left`)}>{user.email}</div>
+          <div className={tw(`text-right`)}>Address: </div><div className={tw(`text-left`)}>{address}</div>
+          <div className={tw(`text-right`)}>Phone: </div><div className={tw(`text-left`)}>{user.phone}</div>
+          <div className={tw(`text-right`)}>Company: </div><div className={tw(`text-left`)}>{user.company.name}</div>
+      </div>
     </div>
 
   );
