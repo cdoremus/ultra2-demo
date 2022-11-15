@@ -3,8 +3,9 @@ import useAsset from "ultra/hooks/use-asset.js";
 import useServerContext from "ultra/hooks/use-server-context.js";
 import { Route, Routes } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-// Twind
+// Twind Provider
 import { TwindProvider } from "./twind/TwindProvider.tsx";
+// Twind
 import  { tw } from "twind";
 
 import { DefaultLayout } from "./layouts/DefaultLayout.tsx";
@@ -32,7 +33,7 @@ export default function App() {
           <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
           <link rel="stylesheet" href={useAsset("/style.css")} />
         </head>
-        <body className={tw(`w-full p-5 bg-lightgray-500`)}>
+        <body className={tw`w-full p-5 bg-lightgray-500`}>
           {/* <Suspense fallback={<div>Page is Loading...</div>}> */}
             <Routes>
               <Route path="/" element={<DefaultLayout />}>

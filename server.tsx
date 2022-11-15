@@ -1,5 +1,5 @@
-import { serve } from "https://deno.land/std@0.159.0/http/server.ts";
-import { createRouter, createServer } from "ultra/server.ts";
+import { serve } from "https://deno.land/std@0.164.0/http/server.ts";
+import { type Context, createRouter, createServer } from "ultra/server.ts";
 import App from "./src/app.tsx";
 
 // Twind
@@ -18,7 +18,8 @@ const server = await createServer({
   browserEntrypoint: import.meta.resolve("./client.tsx"),
 });
 
-function ServerApp({ context }: any) {
+
+function ServerApp({ context }: Context) {
   useDehydrateReactQuery(queryClient);
 
   const requestUrl = new URL(context.req.url);

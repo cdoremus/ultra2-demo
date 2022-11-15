@@ -6,7 +6,7 @@ import { tw } from "twind";
 export default function HomePage() {
   return (
     <div>
-      <h2 className={tw(`text-3xl font-bold`)}>Users</h2>
+      <h2 className={tw`text-3xl font-bold`}>Users</h2>
       <Suspense fallback={<div>Page is Loading...</div>}>
         <UserList />
       </Suspense>

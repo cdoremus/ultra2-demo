@@ -28,7 +28,7 @@ type UserProps = {
 
 export default function User({user}: UserProps) {
   return (
-    <div key={user.id} className={tw(`p-5`)}>
+    <div key={user.id} className={tw`p-5`}>
       <div><Link to={`/user_details/${user.id}`}>{user.name} ({user.email})</Link></div>
     </div>
   );
