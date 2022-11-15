@@ -38,7 +38,7 @@ export default function UserDetails({userId}: UserDetailsProps) {
   return (
 
     <div>
-      <h2 className={tw`text-xl font-bold pb-4`}>User Details for {user.name}</h2>
+      <h2 className={tw`text-3xl font-bold pb-4`}>User Details for {user.name}</h2>
       <div className={tw`grid grid-cols-2 gap-2`}>
           <div className={tw`text-right`}>User Id: </div><div className={tw`text-left`}>{user.id}</div>
           <div className={tw`text-right`}>User name: </div><div className={tw`text-left`}>{user.name}</div>
