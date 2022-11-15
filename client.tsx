@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+
 import hydrate from "ultra/hydrate.js";
 import App from "./src/app.tsx";
 
