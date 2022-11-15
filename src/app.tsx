@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
 import useAsset from "ultra/hooks/use-asset.js";
 import useServerContext from "ultra/hooks/use-server-context.js";
 import { Route, Routes } from "react-router-dom";
@@ -34,17 +34,14 @@ export default function App() {
           <link rel="stylesheet" href={useAsset("/style.css")} />
         </head>
         <body className={tw`w-full p-5 bg-lightgray-500`}>
-          {/* <Suspense fallback={<div>Page is Loading...</div>}> */}
-            <Routes>
-              <Route path="/" element={<DefaultLayout />}>
-                <Route index element={<HomePage />} />
-                <Route path="about" element={<AboutPage />} />
-                <Route path="*" element={<RouteNotFound />} />
-                <Route path="Home" element={<HomePage />} />
-                <Route path="user_details/:userId" element={<UserDetailsPage />} />
-              </Route>
-            </Routes>
-          {/* </Suspense> */}
+          <Routes>
+            <Route path="/" element={<DefaultLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="user_details/:userId" element={<UserDetailsPage />} />
+              <Route path="*" element={<RouteNotFound />} />
+            </Route>
+          </Routes>
           <ReactQueryDevtools />
         </body>
       </html>
