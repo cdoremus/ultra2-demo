@@ -19,21 +19,8 @@ h1 span::before {
   animation: blink 3s infinite;
 }
 
-@keyframes blink {
-
-  0%,
-  50%,
-  70%,
-  95% {
-    content: '@';
-  }
-
-  65%,
-  90% {
-    content: '—';
-  }
-}
 
 p {
   margin: 0 auto 1em;
+  padding: 0.5rem 0;
 }

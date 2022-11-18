@@ -1,15 +1,14 @@
-import { NavLink, Outlet } from "react-router-dom";
-import { TwindProvider } from "../twind/TwindProvider.tsx";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { tw } from "twind";
 
 export default function Layout() {
-  // @ts-ignore isActive typing
-  const navStyle = ({ isActive }) => ({
+  const navStyle = ({ isActive }: {isActive: boolean}) => ({
     fontWeight: isActive ? 'bold' : 'normal',
+    color: isActive ? 'gray' : 'black',
   });
   return (
     <div>
-      <header className={tw`flex border-b-2 border-black`}>
+      <header className={tw`flex border-t-2 border-b-2 border-black`}>
         <nav  className={tw`flex flex-col underline`}>
           <NavLink to="/" style={navStyle}>Home</NavLink> {" "}
           <NavLink to="/about" style={navStyle}>About</NavLink>
@@ -23,6 +22,9 @@ export default function Layout() {
       <main>
         <Outlet />
       </main>
+      <footer className={tw`border-t-2 border-b-2 border-black`}>
+        <div className={tw`p-2`}><a className={tw`font-mono text-xl underline`} href="https://ultrajs.dev">Built with Ultra</a>💎</div>
+      </footer>
     </div>
   );
 }
