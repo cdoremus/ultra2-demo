@@ -8,12 +8,11 @@ import { TwindProvider } from "./twind/TwindProvider.tsx";
 // Twind
 import  { tw } from "twind";
 
-import { DefaultLayout } from "./layouts/DefaultLayout.tsx";
+import Layout from "./pages/Layout.tsx";
+import AboutPage from "./pages/About.tsx";
 import UserDetailsPage from "./pages/UserDetailsPage.tsx";
 
 const HomePage = lazy(() => import("./pages/Home.tsx"));
-const AboutPage = lazy(() => import("./pages/About.tsx"));
-// const UserDetailsPage = lazy(() => import("./pages/UserDetailsPage.tsx"));
 
 function RouteNotFound() {
   useServerContext((context) => {
@@ -33,10 +32,10 @@ export default function App() {
           <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
           <link rel="stylesheet" href={useAsset("/style.css")} />
         </head>
-        <body className={tw`w-full p-5 bg-lightgray-500`}>
+        <body className={tw`w-full p-5 bg-gray-300`}>
           <Routes>
-            <Route path="/" element={<DefaultLayout />}>
-              <Route index element={<HomePage />} />
+            <Route path="/" element={<Layout />}>
+              <Route path="" element={<HomePage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="user_details/:userId" element={<UserDetailsPage />} />
               <Route path="*" element={<RouteNotFound />} />
