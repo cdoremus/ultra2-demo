@@ -35,7 +35,7 @@ export default function App() {
         <body className={tw`w-full p-5 bg-gray-300`}>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route path="" element={<HomePage />} />
+              <Route index element={<HomePage />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="user_details/:userId" element={<UserDetailsPage />} />
               <Route path="*" element={<RouteNotFound />} />
