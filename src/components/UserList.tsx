@@ -9,17 +9,13 @@ function fetchUsers(): Promise<UserType[]> {
 }
 
 export default function UserList() {
-  const { data, isLoading, isError, error } = useQuery(
+  const { data, isLoading } = useQuery(
     ["users"],
     useAsync(() => fetchUsers())
   );
   const users = data as UserType[];
-  // console.log("Users", users);
   if (isLoading) {
     return <div>Loading...</div>
-  }
-  if (isError) {
-    return <div>Error: {error as string}</div>
   }
   return (
     <div>
