@@ -9,5 +9,15 @@
     "jsx": "react-jsxdev",
     "jsxImportSource": "react"
   },
-  "importMap": "./importMap.json"
+  "importMap": "./importMap.json",
+  "lint": {
+    "files": {
+      "exclude": ["./.ultra/"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["./.ultra/"]
+    }
+  }
 }

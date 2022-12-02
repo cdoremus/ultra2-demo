@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { tw } from "twind";
+import { tw } from "../twind/twind.ts";
 
 export type UserType = {
   id: number;
@@ -28,7 +28,7 @@ type UserProps = {
 
 export default function User({user}: UserProps) {
   return (
-    <div className={tw`p-5`}>
+    <div className={tw(`p-5 text-lg`)}>
       <div><Link to={`/user_details/${user.id}`}>{user.name} ({user.email})</Link></div>
     </div>
   );

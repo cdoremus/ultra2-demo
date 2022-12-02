@@ -1,9 +1,8 @@
 import { serve } from "https://deno.land/std@0.164.0/http/server.ts";
-import { type Context, createRouter, createServer } from "ultra/server.ts";
+import { type Context, createServer } from "ultra/server.ts";
+import { createHeadInsertionTransformStream } from "ultra/stream.ts";
+import { stringify, tw } from "./src/twind/twind.ts";
 import App from "./src/app.tsx";
-
-// Twind
-import "./src/twind/twind.ts";
 
 // React Router
 import { StaticRouter } from "react-router-dom/server";
@@ -42,7 +41,18 @@ server.get("*", async (context) => {
    */
   const result = await server.render(<ServerApp context={context} />);
 
-  return context.body(result, 200, {
+  // Inject the style tag into the head of the streamed response
+  const stylesInject = createHeadInsertionTransformStream(() => {
+    if (Array.isArray(tw.target)) {
+      return Promise.resolve(stringify(tw.target));
+    }
+
+    throw new Error("Expected tw.target to be an instance of an Array");
+  });
+
+  const transformed = result.pipeThrough(stylesInject);
+
+  return context.body(transformed, 200, {
     "content-type": "text/html; charset=utf-8",
   });
 });
