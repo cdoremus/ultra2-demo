@@ -10,7 +10,7 @@ Create script options Twind(Tailwind), React Router and React Query were selecte
 
 The 'home' page of the app shows the users list, while clicking on a user produces a page with a user's details. An About page is also included in the app to demonstrate routing with React Router.
 
-This repos is used as an example app for a blog post on [Craig's Deno Diary](https://deno-blog.com) called __Building Full Stack React Apps with Ultra__.
+This repo is used as an example app for a blog post on [Craig's Deno Diary](https://deno-blog.com) called __Building Full Stack React Apps with Ultra__.
 
 To run this app locally, you need to have [Deno installed](https://deno.land/manual@v1.28.3/getting_started/installation). Then just clone this repo and run the following command line in the repo's root folder:
 ```sh
